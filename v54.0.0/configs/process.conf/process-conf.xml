@@ -1,0 +1,168 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="extractCCPMAttachmentsLimit10" class="com.salesforce.dataloader.process.ProcessRunner" scope="prototype">
+        <description>extractCCPMAttachmentsLimit10"</description>
+        <property name="name" value="extractCCPMAttachmentsLimit10" />
+        <property name="configOverrideMap">
+            <map>
+                <entry key="sfdc.debugMessages" value="false" />
+                <entry key="sfdc.debugMessagesFile" value="../samples/status/sfdcExtractCCPMAttachmentsTrace.log" />
+                <entry key="sfdc.endpoint" value="https://test.salesforce.com" />
+                <entry key="sfdc.username" value="myUserName" /> <!-- password specified below is invalid, please generate one using the encrypt.bat utility -->
+                <entry key="sfdc.password" value="myGeneratedToken" />
+                <entry key="process.encryptionKeyFile" value="C:\Users\myWindowsUser\.dataloader\dataLoader.key" />
+                <entry key="sfdc.timeoutSecs" value="540" />
+                <!-- <entry key="sfdc.useBulkApi" value="true" /> -->
+                <entry key="sfdc.entity" value="Attachment" />
+                <entry key="sfdc.extractionRequestSize" value="55" />
+                <entry key="sfdc.extractionSOQL" value="Select Body, BodyLength, Id, ParentId, ContentType FROM Attachment WHERE BodyLength != 16549 AND Parent.Type = 'ccrz__E_ProductMedia__c' limit 10" />
+                <entry key="process.operation" value="extract" />
+                <!-- <entry key="process.mappingFile" value=".\v54.0.0\configs\Mapping\sfdcExtractCCPMAttachmentsMap.sdl" /> -->
+                <entry key="dataAccess.type" value="csvWrite" />
+
+                <entry key="dataAccess.name" value=".\output-cli\extractCCPMAttachments.csv" />
+            </map>
+        </property>
+    </bean>
+    <bean id="uploadBackCCPMAttachmentsLimit10" class="com.salesforce.dataloader.process.ProcessRunner" scope="prototype">
+        <description>uploadBackCCPMAttachmentsLimit10"</description>
+        <property name="name" value="uploadBackCCPMAttachmentsLimit10" />
+        <property name="configOverrideMap">
+            <map>
+                <entry key="sfdc.debugMessages" value="false" />
+                <entry key="sfdc.debugMessagesFile" value="../samples/status/uploadBack15GerenRequirementsTrace.log" />
+                <entry key="sfdc.endpoint" value="https://test.salesforce.com" />
+                <entry key="sfdc.username" value="myUserName" />
+                <entry key="sfdc.password" value="myGeneratedToken" />
+                <entry key="process.encryptionKeyFile" value="C:\Users\myWindowsUser\.dataloader\dataLoader.key" />
+                <entry key="sfdc.timeoutSecs" value="600" />
+                <entry key="sfdc.entity" value="Attachment" />
+                <entry key="sfdc.extractionRequestSize" value="100" />
+                <entry key="process.operation" value="insert" />
+                <entry key="process.mappingFile" value=".\v54.0.0\configs\Mapping\attachementMap.sdl" />
+                <entry key="process.outputSuccess" value=".\v54.0.0\error-success\CCPMAttachmentsUpdate_success.csv" />
+                <entry key="process.outputError" value=".\v54.0.0\error-success\CCPMAttachmentsUpdate_error.csv" />
+
+                <entry key="dataAccess.type" value="csvRead" />
+                <entry key="dataAccess.name" value=".\input-cli\inputAttachements.csv" />
+            </map>
+        </property>
+    </bean>
+    <bean id="extractCCPMAll" class="com.salesforce.dataloader.process.ProcessRunner" scope="prototype">
+        <description>extractCCPMAttachments"</description>
+        <property name="name" value="extractCCPMAll" />
+        <property name="configOverrideMap">
+            <map>
+                <entry key="sfdc.debugMessages" value="true" />
+                <entry key="sfdc.debugMessagesFile" value="../samples/status/sfdcExtractCCPMAttachmentsTrace.log" />
+                <entry key="sfdc.endpoint" value="https://test.salesforce.com" />
+                <entry key="sfdc.username" value="myUserName" /> <!-- password specified below is invalid, please generate one using the encrypt.bat utility -->
+                <entry key="sfdc.password" value="myGeneratedToken" />
+                <entry key="process.encryptionKeyFile" value="C:\Users\myWindowsUser\.dataloader\dataLoader.key" />
+                <entry key="sfdc.timeoutSecs" value="600" />
+                <entry key="sfdc.loadBatchSize" value="200" />
+                <entry key="sfdc.entity" value="object__c" />
+                <entry key="sfdc.extractionRequestSize" value="600" />
+                <!-- <entry key="sfdc.useBulkApi" value="true" /> -->
+                <entry key="sfdc.extractionSOQL" value="SELECT ID FROM object__c" />
+                <entry key="process.operation" value="extract" />
+                <entry key="process.mappingFile" value=".\v54.0.0\configs\Mapping\sfdcExtractCCPMMap.sdl" />
+                <entry key="dataAccess.type" value="csvWrite" />
+                <entry key="dataAccess.name" value=".\output-cli\extractCCPM.csv" />
+            </map>
+        </property>
+    </bean>
+    <bean id="extractUserStorylimit10" class="com.salesforce.dataloader.process.ProcessRunner" scope="prototype">
+        <description>extractUserStorylimit10"</description>
+        <property name="name" value="extractUserStorylimit10" />
+        <property name="configOverrideMap">
+            <map>
+                <entry key="sfdc.debugMessages" value="false" />
+                <entry key="sfdc.debugMessagesFile" value="../samples/status/extractUserStorylimit10Trace.log" />
+                <entry key="sfdc.endpoint" value="https://test.salesforce.com" />
+                <entry key="sfdc.username" value="MyUser" /> <!-- password specified below is invalid, please generate one using the encrypt.bat utility -->
+                <entry key="sfdc.password" value="myGeneratedToken" />
+                <entry key="process.encryptionKeyFile" value="C:\Users\myWindowsUser\.dataloader\dataLoader.key" />
+                <entry key="sfdc.timeoutSecs" value="600" />
+                <entry key="sfdc.entity" value="object__c" />
+                <entry key="sfdc.extractionRequestSize" value="100" />
+                <!-- <entry key="sfdc.useBulkApi" value="true" /> -->
+                <entry key="sfdc.extractionSOQL" value="SELECT [...]]" />
+                <entry key="process.operation" value="extract" />
+                <!-- <entry key="process.mappingFile" value=".\v54.0.0\configs\Mapping\sfdcUserStoryMap.sdl" /> -->
+                <entry key="dataAccess.type" value="csvWrite" />
+                <entry key="dataAccess.name" value=".\output-cli\extractUserStorylimit10.csv" />
+            </map>
+        </property>
+    </bean>
+    <bean id="extractAllProductWithCCPM" class="com.salesforce.dataloader.process.ProcessRunner" scope="prototype">
+        <description>extractCCPMAttachments"</description>
+        <property name="name" value="extractAllProductWithCCPM" />
+        <property name="configOverrideMap">
+            <map>
+                <entry key="sfdc.debugMessages" value="false" />
+                <entry key="sfdc.debugMessagesFile" value="../samples/status/extractAllProductWithCCPMTrace.log" />
+                <entry key="sfdc.endpoint" value="https://test.salesforce.com" />
+                <entry key="sfdc.username" value="myUserName" /> <!-- password specified below is invalid, please generate one using the encrypt.bat utility -->
+                <entry key="sfdc.password" value="myGeneratedToken" />
+                <entry key="process.encryptionKeyFile" value="C:\Users\myWindowsUser\.dataloader\dataLoader.key" />
+                <entry key="sfdc.timeoutSecs" value="600" />
+                <entry key="sfdc.loadBatchSize" value="200" />
+                <entry key="sfdc.entity" value="object__c" />
+                <entry key="sfdc.extractionRequestSize" value="600" />
+                <!-- <entry key="sfdc.useBulkApi" value="true" /> -->
+                <entry key="sfdc.extractionSOQL" value="SELECT [...]" />
+                <entry key="process.operation" value="extract" />
+                <!-- <entry key="process.mappingFile" value=".\v54.0.0\configs\Mapping\sfdcExtractCCPMMap.sdl" /> -->
+                <entry key="dataAccess.type" value="csvWrite" />
+                <entry key="dataAccess.name" value=".\output-cli\extractAllProductWithCCPM.csv" />
+            </map>
+        </property>
+    </bean>
+    <bean id="extractGerenRequirementslimit15" class="com.salesforce.dataloader.process.ProcessRunner" scope="prototype">
+        <description>extractGerenRequirementslimit15"</description>
+        <property name="name" value="extractGerenRequirementslimit15" />
+        <property name="configOverrideMap">
+            <map>
+                <entry key="sfdc.debugMessages" value="false" />
+                <entry key="sfdc.debugMessagesFile" value="../samples/status/extractGerenRequirementslimit15Trace.log" />
+                <entry key="sfdc.endpoint" value="https://test.salesforce.com" />
+                <entry key="sfdc.username" value="myUserName" />
+                <entry key="sfdc.password" value="myGeneratedToken" />
+                <entry key="process.encryptionKeyFile" value="C:\Users\myWindowsUser\.dataloader\dataLoader.key" />
+                <entry key="sfdc.timeoutSecs" value="600" />
+                <entry key="sfdc.entity" value="object__c" />
+                <entry key="sfdc.extractionRequestSize" value="100" />
+                <entry key="sfdc.extractionSOQL" value="" />
+                <entry key="process.operation" value="extract" />
+                <!-- <entry key="process.mappingFile" value=".\v54.0.0\configs\Mapping\sfdcUserStoryMap.sdl" /> -->
+                <entry key="dataAccess.type" value="csvWrite" />
+                <entry key="dataAccess.name" value=".\output-cli\extractGerenRequirementslimit15.csv" />
+            </map>
+        </property>
+    </bean>
+    <bean id="uploadBack15GerenRequirements" class="com.salesforce.dataloader.process.ProcessRunner" scope="prototype">
+        <description>uploadBack15GerenRequirements"</description>
+        <property name="name" value="uploadBack15GerenRequirements" />
+        <property name="configOverrideMap">
+            <map>
+                <entry key="sfdc.debugMessages" value="false" />
+                <entry key="sfdc.debugMessagesFile" value="../samples/status/uploadBack15GerenRequirementsTrace.log" />
+                <entry key="sfdc.endpoint" value="https://test.salesforce.com" />
+                <entry key="sfdc.username" value="myUserName" />
+                <entry key="sfdc.password" value="myGeneratedToken" />
+                <entry key="process.encryptionKeyFile" value="C:\Users\myWindowsUser\.dataloader\dataLoader.key" />
+                <entry key="sfdc.timeoutSecs" value="600" />
+                <entry key="sfdc.entity" value="object__c" />
+                <entry key="sfdc.extractionRequestSize" value="100" />
+                <entry key="process.operation" value="update" />
+                <entry key="process.mappingFile" value=".\v54.0.0\configs\Mapping\gerenAccountsMap.sdl" />
+                <entry key="process.outputSuccess" value=".\v54.0.0\error-success\accountUpdate_success.csv" />
+                <entry key="process.outputError" value=".\v54.0.0\error-success\accountUpdate_error.csv" />
+
+                <entry key="dataAccess.type" value="csvRead" />
+                <entry key="dataAccess.name" value=".\output-cli\extractGerenRequirementslimit15.csv" />
+            </map>
+        </property>
+    </bean>
+</beans>

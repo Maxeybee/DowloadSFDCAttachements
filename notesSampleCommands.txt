@@ -1,0 +1,16 @@
+./v54.0.0/bin/process.bat ./v54.0.0/configs  extractCCPMAttachments
+./v54.0.0/bin/process.bat ./v54.0.0/configs  extractCCPMAll
+./v54.0.0/bin/process.bat ./v54.0.0/configs  ImportCCPMAttachments
+./v54.0.0/bin/process.bat ./v54.0.0/configs extractAllProductWithCCPM
+
+./v54.0.0/bin/process.bat ./v54.0.0/configs extractUserStorylimit10
+
+
+
+
+./v54.0.0/bin/process.bat ./v54.0.0/configs extractAccountslimit15
+./v54.0.0/bin/process.bat ./v54.0.0/configs
+# node ./main.js
+
+
+./v54.0.0/bin/process.bat ./v54.0.0/configs extractCCPMAttachmentsLimit10
